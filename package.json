@@ -1,0 +1,26 @@
+{
+    "name": "demo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "types": "module",
+    "scripts": {
+        "dev": "nodemon -r esm app.js",
+        "test": "npm run test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "a"
+    },
+    "author": "sakib hasan",
+    "license": "ISC",
+    "dependencies": {
+        "esm": "^3.2.25",
+        "express": "^4.17.1",
+        "fs": "^0.0.1-security",
+        "mongoose": "^5.12.0",
+        "nodemon": "^2.0.7",
+        "path": "^0.12.7",
+        "pg": "^8.5.1"
+    }
+}
