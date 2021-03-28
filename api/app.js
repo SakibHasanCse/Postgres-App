@@ -2,19 +2,22 @@ import express from 'express'
 const app = express()
 import fs from 'fs'
 import path from 'path'
-import blog from './routers/blog'
-import user from './routers/user'
 
-import { pool } from './db'
+
+// import { pool } from './db'
+import { routers } from './routers/auth'
 
 app.use(express.json())
 
 
-const routers = fs.readdirSync(path.join(__dirname, 'routers'))
-routers.map((route) => {
-    app.use('/api', require(`./routers/${route}`).default)
 
-})
+routers(app)
+
+// const routers = fs.readdirSync(path.join(__dirname, 'routers'))
+// routers.map((route) => {
+//     app.use('/api', require(`./routers/${route}`).default)
+
+// })
 
 
 

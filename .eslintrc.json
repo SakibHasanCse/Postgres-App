@@ -29,5 +29,7 @@
         "import",
         "react"
     ],
-    "rules": []
+    "rules": [
+        ""
+    ]
 }
