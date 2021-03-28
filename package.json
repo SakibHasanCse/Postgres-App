@@ -5,7 +5,10 @@
     "main": "app.js",
     "types": "module",
     "scripts": {
-        "dev": "nodemon -r esm server.js",
+        "clean": "rm -rf build && mkdir build",
+        "build": "npm run clean && babel api --out-dir build",
+        "start": "node build/server.js",
+        "dev": "nodemon --exec babel-node api/server.js",
         "test": "npm run test"
     },
     "repository": {
@@ -25,6 +28,12 @@
         "slugify": "^1.5.0"
     },
     "devDependencies": {
+        "@babel/cli": "^7.13.10",
+        "@babel/core": "^7.13.13",
+        "@babel/node": "^7.13.13",
+        "@babel/preset-env": "^7.13.12",
+        "@babel/preset-react": "^7.13.13",
+        "babel-eslint": "^10.1.0",
         "eslint": "^7.23.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-plugin-import": "^2.22.1",
