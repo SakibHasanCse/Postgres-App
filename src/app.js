@@ -9,14 +9,6 @@ import { pool } from './db'
 
 app.use(express.json())
 
-app.post('/', async(req, res) => {
-    const { description } = req.body
-    const newTOdo = await pool.query(
-        "INSERT INTO todo (description) VALUES($1) RETURNING *", [description]
-    )
-    console.log(newTOdo)
-    return res.json(newTOdo.rows[0])
-})
 
 const routers = fs.readdirSync(path.join(__dirname, 'routers'))
 routers.map((route) => {
