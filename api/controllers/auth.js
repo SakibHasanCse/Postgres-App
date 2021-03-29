@@ -20,5 +20,6 @@ export const Auth = {
             return next(new Error(error))
         }
 
-    }
+    },
+
 }
