@@ -20,4 +20,4 @@ export const CreateHashPassword = (password) => bcrypt.hashSync(password, 10);
 
 
 
-export const CompareHashPassword = async(password, haspassword) => bicrypt.compareSync(password, haspassword)
+export const CompareHashPassword = (password, haspassword) => bcrypt.compareSync(password, haspassword)
