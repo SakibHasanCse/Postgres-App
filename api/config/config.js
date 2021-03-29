@@ -24,7 +24,7 @@
 
 
 require('dotenv').config();
-module.exports = {
+module.export = {
     development: {
         database: 'tododev',
         use_env_variable: 'DB_DEV_URL',
