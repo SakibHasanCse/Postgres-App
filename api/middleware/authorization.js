@@ -13,12 +13,15 @@ export default (req, res, next) => {
             res.status(401).json({ error: err })
         } else {
             req.decoded = decoded
-            User.findByPk(decoded.userId).then(user => {
-                if (!user) {
-                    return res.status(400).json({ error: 'User not found' })
-                }
-                next();
-            })
+
+            console.log(decoded)
+            User.findByPk(decoded.userId)
+                .then(user => {
+                    if (!user) {
+                        return res.status(400).json({ error: 'User not found' })
+                    }
+                    next();
+                })
         }
     })
 

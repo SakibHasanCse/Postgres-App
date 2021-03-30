@@ -5,8 +5,8 @@ const router = express.Router()
 router.get('/', (req, res) => {
     res.json({ message: 'Hello Successfully' })
 })
-router.post('/api/auth/signup', Validations.signUpAuth, Auth.signUp)
-router.post('/api/auth/signin', Validations.signInAuth, Auth.signIn)
+router.post('/auth/signup', Validations.signUpAuth, Auth.signUp)
+router.post('/auth/signin', Validations.signInAuth, Auth.signIn)
 
 
 export default router

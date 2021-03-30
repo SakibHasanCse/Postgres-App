@@ -28,7 +28,9 @@ export const Auth = {
                     return res.status(400).json({ error: 'User not found with email' })
                 }
                 if (CompareHashPassword(password, user.password)) {
-                    const token = jwtToken.CreateToken(user)
+                    const token = jwtToken.CreateToken(
+                        user
+                    )
                     user.password = undefined
                     return res.status(200).json({ token, user })
 

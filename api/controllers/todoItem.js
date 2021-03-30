@@ -1,25 +1,25 @@
 import { Todo, TodoItem } from '../models'
 
-export const Todos = {
-    async create({ body, decoded }, res, next) {
-        const { title } = body
-        const { userId } = decoded
-        await Todo.create({ title, userId })
+export const todoitem = {
+    async create(req, res, next) {
+
+        const { text, todoId } = req.body
+        await TodoItem.create({ text, todoId })
             .then((data) => {
                 return res.status(201).json(data)
-
             }).catch((err) => {
                 return next(new Error(err))
             })
 
     },
-    async fetchAll({ decoded }, res, next) {
+    async fetchAll(req, res, next) {
         try {
-            await Todo.findAll({
-                    where: { userId: decoded.userId },
+            const { todoId } = req.params
+            await TodoItem.findAll({
+                    where: { todoId },
                     include: {
-                        model: TodoItem,
-                        as: 'todoItems'
+                        model: Todo,
+                        as: 'todo'
                     }
                 })
                 .then((data) => {
@@ -32,14 +32,19 @@ export const Todos = {
 
         }
     },
-    async fetchOne({ params, decoded }, res, next) {
+    async fetchOne(req, res, next) {
         try {
-            await Todo.findOne({
-                    where: { id: params.id, userId: decoded.userId }
+            const { todoItemId } = req.params
+            await TodoItem.findOne({
+                    where: { id: todoItemId },
+                    include: {
+                        model: Todo,
+                        as: 'todo'
+                    }
                 })
                 .then((data) => {
                     if (!data) {
-                        return res.status(400).json({ error: 'Todo is not available' })
+                        return res.status(400).json({ error: 'Todo Item is not available' })
                     }
                     return res.status(200).json(data)
 
@@ -51,18 +56,21 @@ export const Todos = {
         }
     },
 
-    async update({ body, params, decoded }, res, next) {
+    async update(req, res, next) {
         try {
-            await Todo.findOne({ where: { id: params.id, userId: decoded.userId } })
+            const body = req.body
+            const { todoItemId } = req.params
+            await TodoItem.findOne({ where: { id: todoItemId } })
                 .then((data) => {
                     if (!data) {
-                        return res.status(400).json({ error: 'Todo is not available' })
+                        return res.status(400).json({ error: 'Todo Item is not available' })
                     }
-                    Todo.update({ title: body.title || data.title }, {
+
+                    TodoItem.update({ text: body.text || data.text, isCompleted: body.isCompleted }, {
                             where: {
-                                id: params.id,
-                                userId: decoded.userId
+                                id: todoItemId
                             },
+
                             returning: true,
                             plain: true
                         })
@@ -79,15 +87,15 @@ export const Todos = {
             return next(new Error(error))
         }
     },
-    async delete({ params, decoded }, res, next) {
+    async delete({ params }, res, next) {
         try {
-            await Todo.findOne({ where: { id: params.id, userId: decoded.userId } })
+            await TodoItem.findOne({ where: { id: params.todoItemId, } })
                 .then((data) => {
                     if (!data) {
-                        return res.status(400).json({ error: 'Todo is not available' })
+                        return res.status(400).json({ error: 'Todo Item is not available' })
                     }
                     data.destroy()
-                    return res.status(200).json({ message: 'delete was successful' })
+                    return res.status(200).json({ message: ' Todo delete was successful' })
 
                 }).catch((err) => {
                     return next(new Error(err))

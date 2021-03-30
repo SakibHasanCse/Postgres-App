@@ -5,14 +5,12 @@
     "main": "app.js",
     "types": "module",
     "scripts": {
-        "db:migrate:dev": "sequelize db:migrate --env development",
-        "db:migrate:test": "sequelize db:migrate --env test",
-        "db:migrate:production": "sequelize db:migrate --env production",
+        "migrate": "sequelize db:migrate:undo:all && sequelize  db:migrate",
 
         "clean": "rm -rf build && mkdir build",
         "build": "npm run clean && babel api --out-dir build",
         "start": "node build/app.js",
-        "dev": " nodemon    --exec babel-node   api/server.js"
+        "dev": " nodemon --exec babel-node   api/server.js"
     },
     "repository": {
         "type": "git",

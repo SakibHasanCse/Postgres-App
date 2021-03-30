@@ -7,8 +7,9 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            test: {
-                type: Sequelize.STRING
+            text: {
+                type: Sequelize.STRING,
+                allowNull: false
             },
             todoId: {
                 type: Sequelize.INTEGER,
@@ -20,6 +21,7 @@ module.exports = {
             },
             isCompleted: {
                 type: Sequelize.BOOLEAN,
+                defaultValue: false
             },
             createdAt: {
                 allowNull: false,

@@ -4,8 +4,12 @@ import { config } from 'dotenv'
 config()
 
 export const jwtToken = {
-    CreateToken(id, email) {
-        const token = jwt.sign({ id, email }, process.env.JWT_TOKEN, { expiresIn: process.env.EXPIRES_IN })
+    CreateToken(user) {
+
+        const { id, email } = user
+        console.log(user)
+        const token = jwt.sign({ userId: id, email },
+            process.env.JWT_TOKEN, { expiresIn: process.env.EXPIRES_IN })
         return token
     },
     VARIFY_TOKEN(token) {

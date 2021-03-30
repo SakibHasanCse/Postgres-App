@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     TodoItem.init({
-        test: DataTypes.STRING,
+        text: DataTypes.STRING,
         todoId: DataTypes.INTEGER,
         isCompleted: DataTypes.BOOLEAN
     }, {
