@@ -1,32 +1,23 @@
-import fs from 'fs';
-import path from 'path';
-import Sequelize from 'sequelize';
-import envVars from '../config/config';
+'use strict';
 
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
 
-const config = envVars[env];
+
+// After
+const env = process.env.NODE_ENV || 'development'; // add .trim()
+
+const config = require(__dirname + '../config/config.js')[env];
 const db = {};
-
-console.log(config)
-console.log(env)
 
 let sequelize;
 if (config.use_env_variable) {
-    console.log('hello1');
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
-    console.log(process.env);
 } else {
-    console.log('hello');
-    sequelize = new Sequelize(
-        config.database,
-        config.username,
-        config.password,
-        config);
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-
-console.log('hello world')
 fs
     .readdirSync(__dirname)
     .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))

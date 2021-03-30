@@ -2,13 +2,15 @@ import express from 'express'
 const app = express()
 import fs from 'fs'
 import path from 'path'
+import bodyParser from 'body-parser'
 
 
 // import { pool } from './db'
 import { routers } from './routers/auth'
 
 
-app.use(express.json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 
