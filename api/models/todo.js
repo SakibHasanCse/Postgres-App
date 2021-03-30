@@ -1,5 +1,6 @@
-import { Model } from 'sequelize'
-export default (sequelize, DataTypes) => {
+import Model from 'sequelize'
+module.exports = (sequelize, DataTypes) => {
+
     class Todo extends Model {
 
         static associate(models) {
@@ -9,7 +10,7 @@ export default (sequelize, DataTypes) => {
                     foreignKey: 'userId'
                 }),
                 Todo.hasMany(models.TodoItem, {
-                    as: 'todoitems',
+                    as: 'todoItems',
                     foreignKey: 'todoId'
                 })
 

@@ -17,7 +17,7 @@
         }
     },
     "parser": "babel-eslint",
-    "paserOptions": {
+    "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
         "ecmaFeatures": {
@@ -29,7 +29,7 @@
         "import",
         "react"
     ],
-    "rules": [
-        ""
-    ]
+    "rules": {
+        "comma-dangle": 0
+    }
 }

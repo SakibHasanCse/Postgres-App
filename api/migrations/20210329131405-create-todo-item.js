@@ -12,6 +12,7 @@ export default {
             },
             todoId: {
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'Todos',
                     as: 'id'

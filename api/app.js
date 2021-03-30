@@ -7,6 +7,7 @@ import path from 'path'
 // import { pool } from './db'
 import { routers } from './routers/auth'
 
+
 app.use(express.json())
 
 

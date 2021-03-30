@@ -1,9 +1,9 @@
-import { Model } from 'sequelize'
-export default (sequelize, DataTypes) => {
+import Model from 'sequelize'
+module.exports = (sequelize, DataTypes) => {
     class TodoItem extends Model {
 
         static associate(models) {
-            TodoItem.belongsTo(models.Item, {
+            TodoItem.belongsTo(models.Todo, {
                 as: 'todo',
                 foreignKey: 'todoId'
             })
@@ -12,7 +12,7 @@ export default (sequelize, DataTypes) => {
     TodoItem.init({
         test: DataTypes.STRING,
         todoId: DataTypes.INTEGER,
-        isCompledted: DataTypes.BOOLEAN
+        isCompleted: DataTypes.BOOLEAN
     }, {
         sequelize,
         modelName: 'TodoItem',
