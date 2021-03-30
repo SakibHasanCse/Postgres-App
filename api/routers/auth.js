@@ -1,11 +1,12 @@
 import { Auth } from "../controllers/auth"
 import { Validations } from "../middleware/auth"
+import express from 'express'
+const router = express.Router()
+router.get('/', (req, res) => {
+    res.json({ message: 'Hello Successfully' })
+})
+router.post('/api/auth/signup', Validations.signUpAuth, Auth.signUp)
+router.post('/api/auth/signin', Validations.signInAuth, Auth.signIn)
 
-export const routers = (app) => {
-    app.get('/', (req, res) => {
-        res.json({ message: 'Hello Successfully' })
-    })
-    app.post('/api/auth/signup', Validations.signUpAuth, Auth.signUp)
-    app.post('/api/auth/signin', Validations.signInAuth, Auth.signIn)
 
-}
+export default router

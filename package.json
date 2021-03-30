@@ -12,7 +12,7 @@
         "clean": "rm -rf build && mkdir build",
         "build": "npm run clean && babel api --out-dir build",
         "start": "node build/app.js",
-        "dev": " nodemon    --exec babel-node  NODE_ENV=development api/server.js"
+        "dev": " nodemon    --exec babel-node   api/server.js"
     },
     "repository": {
         "type": "git",
