@@ -1,23 +1,41 @@
 import React from 'react';
-const Navbar = () => {
+import { signUp, signInApi } from '../../actions/auth'
+import { connect } from 'react-redux'
+const Navbar = (props) => {
+    const handlesignIn = () => {
+        props.signInApi({
+            email: 'asdasdas@gmail.com',
+            password: 'dfdasfasdsa'
+        })
+    }
+    const handlesignUp = () => {
+        props.signUp({
+            name: 'Sakib Hasan',
+            email: 'asdasdas@gmail.com',
+            password: 'dfdasfasdsa'
+        })
+    }
+
+
     return (
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <a href="/" className="navbar-brand h1">ROUTINE</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">SignUp</a>
+                        <li className="nav-item">
+                            <div className="nav-link" onClick={handlesignUp}>SignUp</div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sign In</a>
+                        <li className="nav-item">
+                            <div className="nav-link" onClick={handlesignIn}>Sign In</div>
                         </li>
+
 
                     </ul>
 
@@ -27,4 +45,9 @@ const Navbar = () => {
 
     )
 }
-export default Navbar
+const mapStateToProps = ({ auth }) => {
+    console.log(auth)
+    return { ...auth }
+
+}
+export default connect(mapStateToProps, { signUp, signInApi })(Navbar)

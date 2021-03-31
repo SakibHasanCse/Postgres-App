@@ -6,7 +6,6 @@
     "types": "module",
     "scripts": {
         "migrate": "sequelize db:migrate:undo:all && sequelize  db:migrate",
-
         "clean": "rm -rf build && mkdir build",
         "build": "npm run clean && babel api --out-dir build",
         "start": "node build/app.js",
@@ -20,6 +19,7 @@
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "esm": "^3.2.25",
         "express": "^4.17.1",
