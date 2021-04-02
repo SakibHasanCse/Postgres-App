@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from './components/Nav/Nabar';
 import Home from './components/Home'
+import { Provider } from './context/authContext';
 function App() {
   return (
     <div className="App">
@@ -21,4 +22,10 @@ function App() {
   );
 }
 
-export default App;
+export default () => {
+  return (
+    <Provider>
+      <App />
+    </Provider>
+  )
+};
